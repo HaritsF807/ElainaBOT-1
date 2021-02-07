@@ -974,6 +974,40 @@ module.exports = tobz = async (tobz, message) => {
             if (prty.length > 10) return tobz.reply(from, '*Teks Terlalu Panjang!*\n_Maksimal 10 huruf!_', id)
             await tobz.sendFileFromUrl(from, `https://api.vhtear.com/partytext?text=${prty}&apikey=${vhtearkey}`, 'party.jpg', '', id)
             break
+	case prefix+'fire':
+	    if(isReg(obj)) return
+	    if(cekumur(cekage)) return 
+	    tobz.reply(from, mess.wait, id)
+	    const api = body.slice(6)
+	    if (args.length === 1) await tobz.reply(from, `Kirim perintah ${prefix}fire [teks]\nContoh:${prefix}fire Tobz`, id)
+	    await tobz.sendFileFromUrl(from, `https://api.vhtear.com/fire_maker?text=${api}&apikey=${vhtearkey}`, 'fire.png', `${api}`, id) 
+	    break
+	case prefix+'metal':
+	    if(isReg(obj)) return
+	    if(cekumur(cekage)) return 
+	    tobz.reply(from, mess.wait, id)
+	    const besi = body.slice(7)
+	    if (args.length === 1) await tobz.reply(from, `Kirim perintah ${prefix}metal [teks]\nContoh:${prefix}metal Tobz`, id)
+	    await tobz.sendFileFromUrl(from, `https://api.vhtear.com/metal_maker?text=${besi}&apikey=${vhtearkey}`, 'besi.png', `${besi}`, id) 
+	    break
+	case prefix+'balon':
+            if(isReg(obj)) return
+            if(cekumur(cekage)) return
+            if (isLimit(serial)) return tobz.reply(from, `Maaf ${pushname}, Kuota Limit Kamu Sudah Habis, Ketik ${prefix}limit Untuk Mengecek Kuota Limit Kamu`, id)
+            if (args.length === 1) return tobz.reply(from, `Kirim perintah *${prefix}balon [ |Teks1|Teks2 ]*, contoh *${prefix}balon |Tobz|Elaina*`, id)
+            argz = body.trim().split('|')
+            if (argz.length >= 2) {
+                tobz.reply(from, mess.wait, id)
+                const blon1 = argz[1]
+                const blon2 = argz[2]
+                if (blon1.length > 10) return tobz.reply(from, '*Teks1 Terlalu Panjang!*\n_Maksimal 10 huruf!_', id)
+                if (blon2.length > 10) return tobz.reply(from, '*Teks2 Terlalu Panjang!*\n_Maksimal 10 huruf!_', id)
+                tobz.sendFileFromUrl(from, `https://api.vhtear.com/balloonmaker?text1=${blon1}&text2=${blon2}&apikey=${vhtearkey}`)
+                await limitAdd(serial)
+            } else {
+                await tobz.reply(from, `Wrong Format!\n[❗] Kirim perintah *${prefix}balon [ |Teks1|Teks2 ]*, contoh *${prefix}balon |Tobz|Elaina*`, id)
+            }
+            break
         case prefix+'silk':
             if(isReg(obj)) return
             if(cekumur(cekage)) return
